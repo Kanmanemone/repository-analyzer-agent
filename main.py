@@ -19,7 +19,7 @@ def main():
         return
         
     TARGET_REPO = "Kanmanemone/private-practice" # 분석 레포 설정
-    MODEL = "gemini-2.5-flash"
+    MODEL = "gemini-3.1-flash-lite"
 
     print(f"[README 생성 에이전트] '{TARGET_REPO}' 분석을 시작합니다.\n")
 
