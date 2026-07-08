@@ -10,6 +10,7 @@ def build_doc_gen_prompt(
     directory_text: str,
     feature_text: str,
     key_files_text: str,
+    execution_flow_text: str,
     tech_text: str,
     architecture_summary: str,
     key_points_text: str,
@@ -54,6 +55,9 @@ def build_doc_gen_prompt(
 [핵심 파일]
 {key_files_text}
 
+[실행 흐름]
+{execution_flow_text}
+
 [기술 스택]
 {tech_text}
 
@@ -86,6 +90,7 @@ def build_prompt_from_project_data(project_data: Dict, mode: str = "portfolio") 
     directory_explanation = analysis.get("directory_explanation", [])
     main_features = analysis.get("main_features", [])
     key_files = analysis.get("key_files", [])
+    execution_flow = analysis.get("execution_flow", "")
     uncertain_points = analysis.get("uncertain_points", [])
 
     tech_stack = tech.get("tech_stack", {})
@@ -143,6 +148,7 @@ def build_prompt_from_project_data(project_data: Dict, mode: str = "portfolio") 
         directory_text=directory_text,
         feature_text=feature_text,
         key_files_text=key_files_text,
+        execution_flow_text=execution_flow or "- 정보 없음",
         tech_text=tech_text,
         architecture_summary=architecture_summary or "- 정보 없음",
         key_points_text=key_points_text,
