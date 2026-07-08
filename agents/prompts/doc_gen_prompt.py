@@ -81,7 +81,7 @@ def build_doc_gen_prompt(
 
 
 def build_prompt_from_project_data(project_data: Dict, mode: str = "portfolio") -> str:
-    project_name = project_data.get("project_name", "Unknown Project")
+    project_name = project_data.get("repo_name", "Unknown Project")
     repo_url = project_data.get("repo_url", "")
     analysis = project_data.get("analysis_summary", {})
     tech = project_data.get("tech_summary", {})
