@@ -39,11 +39,19 @@ def main():
             print(f"❌ 데이터 추출 실패: {project_data.get('error')}")
             return
 
+        print("--- [분석용] Step 1 후의 project_data")
+        print(json.dumps(project_data, ensure_ascii=False, indent=2))
+        print("---")
+
         # ---------------------------------------------------------
         # Step 2: Analyst - 프로젝트 구조 및 기능 분석
         # ---------------------------------------------------------
         print("\n🔍 Analyst 에이전트가 프로젝트를 분석 중입니다...")
         analyst_output = analyst.run(project_data)
+
+        print("--- [분석용] Step 2 후의 analyst_output (analysis_summary 포함됨)")
+        print(json.dumps(analyst_output, ensure_ascii=False, indent=2))
+        print("---")
         
         # 분석 결과(JSON 문자열)를 파싱하여 데이터 객체에 저장
         try:
@@ -64,6 +72,10 @@ def main():
         # ---------------------------------------------------------
         print("\n💻 TechExpert 에이전트가 기술 스택을 정리 중입니다...")
         tech_output = tech_exp.run(analyst_output)
+
+        print("--- [분석용] Step 3 후의 tech_output (tech_summary 포함됨)")
+        print(json.dumps(tech_output, ensure_ascii=False, indent=2))
+        print("---")
         
         if tech_output.get("status") == "success":
             project_data["tech_summary"] = tech_output.get("tech_summary")
@@ -76,6 +88,10 @@ def main():
         # ---------------------------------------------------------
         print("\n✍️ Writer 에이전트가 README 초안을 작성하고 있습니다...")
         writer_output = writer.run(project_data)
+
+        print("--- [분석용] Step 4 후의 writer_output (readme_markdown 포함됨)")
+        print(json.dumps(writer_output, ensure_ascii=False, indent=2))
+        print("---")
         
         if writer_output.get("status") == "success":
             final_readme = writer_output.get("readme_markdown")
@@ -90,6 +106,10 @@ def main():
         print("\n📤 깃허브에 Pull Request를 생성합니다...")
         publish_result = repo_mgr.publish_readme(TARGET_REPO, final_readme)
         
+        print("--- [분석용] Step 5 후의 publish_result")
+        print(json.dumps(publish_result, ensure_ascii=False, indent=2))
+        print("---")
+
         if publish_result.get("status") == "success":
             print("\n" + "="*50)
             print("🎉 모든 작업이 완료되었습니다!")
