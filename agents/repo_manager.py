@@ -80,25 +80,31 @@ class RepoManagerAgent:
         """
         깃허브 프로젝트 전체 트리 추출 및 LLM 선별 핵심 파일 반환
         """
-        repo = get_github_repo(self.token, repo_name)
-        
-        tree_paths = fetch_tree_paths(repo)
-        
-        candidate_paths = self._select_files_with_llm(tree_paths, max_files=10)
-        
-        for path in candidate_paths:
-            print(f" - {path}")
-        print()
-        
-        selected_files = fetch_file_contents(repo, candidate_paths)
+        try:
+            repo = get_github_repo(self.token, repo_name)
 
-        return {
-            "status": "success",
-            "repo_name": repo_name,
-            "repo_url": repo.html_url,
-            "tree_paths": tree_paths,
-            "selected_files": selected_files,
-        }
+            tree_paths = fetch_tree_paths(repo)
+
+            candidate_paths = self._select_files_with_llm(tree_paths, max_files=10)
+
+            for path in candidate_paths:
+                print(f" - {path}")
+            print()
+
+            selected_files = fetch_file_contents(repo, candidate_paths)
+
+            return {
+                "status": "success",
+                "repo_name": repo_name,
+                "repo_url": repo.html_url,
+                "tree_paths": tree_paths,
+                "selected_files": selected_files,
+            }
+        except Exception as e:
+            return {
+                "status": "fail",
+                "error": str(e),
+            }
 
     def publish_readme(self, repo_name: str, readme_content: str) -> Dict[str, Any]:
         """
