@@ -70,6 +70,11 @@ class RepoManagerAgent:
                 
             # 실제로 존재하는 파일인지 확인
             validated_files = [f for f in selected_files if f in tree_paths]
+
+            if not validated_files:
+                print("⚠️ LLM이 유효한 파일을 선택하지 못해 규칙 기반 선택으로 폴백합니다.")
+                return select_candidate_files(tree_paths, max_files=max_files)
+
             return validated_files[:max_files]
             
         except Exception as e:
