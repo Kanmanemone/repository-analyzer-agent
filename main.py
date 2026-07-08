@@ -19,7 +19,7 @@ def main():
         return
         
     TARGET_REPO = "tishakong/SMWU_CG_LAB01" # 분석 레포 설정
-    MODEL = "gemini-2.5-flash"
+    MODEL = "gemini-flash-latest"
 
     print(f"[README 생성 에이전트] '{TARGET_REPO}' 분석을 시작합니다.\n")
 
