@@ -14,12 +14,12 @@ ANALYST_INSTRUCTION = """
 반드시 아래 JSON 형식으로만 응답하라:
 
 {
-    "project_overview": "프로젝트 개요",
-    "directory_structure": "디렉토리 구조 설명",
-    "key_features": "주요 기능 설명",
-    "key_files": "핵심 파일 역할 설명",
+    "one_line_summary": "프로젝트 한 줄 요약",
+    "directory_explanation": ["디렉토리 구조 설명 1", "디렉토리 구조 설명 2"],
+    "main_features": ["주요 기능 1", "주요 기능 2"],
+    "key_files": [{"path": "파일 경로", "role": "역할 설명"}],
     "execution_flow": "핵심 실행 흐름 또는 사용자 흐름",
-    "uncertain_points": "불확실하거나 추가 확인이 필요한 부분"
+    "uncertain_points": ["불확실하거나 추가 확인이 필요한 부분 1"]
 }
 """.strip()
 
