@@ -1,3 +1,9 @@
+<sub>● <strong><a href="https://github.com/yeverycode/Agent">원본 저장소</a></strong>를 fork하여 <strong>학습용</strong>으로 사용한 저장소입니다.</sub><br>
+<sub>● <strong><a href="https://kenel.tistory.com/414">블로그</a></strong>에서 <strong>실습 내용</strong>을 확인할 수 있습니다.</sub><br>
+<sub>● 아래부터 있는 이 저장소의 README.md는 이 저장소를 통해 생성되었습니다!</sub><br>
+
+---
+
 # Repository Analyzer Agent
 
 LLM(Gemini) 기반의 다중 에이전트 협업을 통해 GitHub 저장소를 분석하고, 프로젝트의 기술적 특징을 반영한 README.md를 자동 생성하여 Pull Request를 제안하는 자동화 도구입니다.
